@@ -4,6 +4,7 @@ const cors = require("cors");
 
 const authRoutes = require("./routes/auth");
 const chartRoutes = require("./routes/charts");
+const statsRoutes = require("./routes/stats");
 
 const app = express();
 
@@ -23,6 +24,9 @@ app.use("/api", authRoutes);
 
 //Chart routes
 app.use("/api/charts", chartRoutes);
+
+//Stats route
+app.use("/api", statsRoutes);
 
 // Start server
 const PORT = 3000;

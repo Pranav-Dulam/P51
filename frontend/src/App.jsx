@@ -5,45 +5,59 @@ import Summary from "./pages/Summary.jsx";
 import Reports from "./pages/Reports.jsx";
 import NavBar from "./components/NavBar.jsx";
 import ProtectedRoute from "./auth/ProtectedRoute.jsx";
+import ChartCard from "./components/ChartCard";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [userCount, setUserCount] = useState(0);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/api/users-count")
+      .then(res => res.json())
+      .then(data => {
+        setUserCount(data.count);
+      })
+      .catch(() => setUserCount(0));
+  }, []);
   return (
     <BrowserRouter>
       <NavBar />
 
-      <Routes>
-        <Route path="/Login" element={<Login />} />
+      <div className="pt-24 px-6 pb-10">
+        <Routes>
+          <Route path="/login" element={<Login />} />
 
-        <Route
-          path="/Dashboard"
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          }
-        />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard  userCount={userCount}/>
+              </ProtectedRoute>
+            }
+          />
 
-        <Route
-          path="/Summary"
-          element={
-            <ProtectedRoute>
-              <Summary />
-            </ProtectedRoute>
-          }
-        />
+          <Route
+            path="/summary"
+            element={
+              <ProtectedRoute>
+                <Summary />
+              </ProtectedRoute>
+            }
+          />
 
-        <Route
-          path="/Reports"
-          element={
-            <ProtectedRoute>
-              <Reports />
-            </ProtectedRoute>
-          }
-        />
+          <Route
+            path="/reports"
+            element={
+              <ProtectedRoute>
+                <Reports />
+              </ProtectedRoute>
+            }
+          />
 
-        {/* Default redirect */}
-        <Route path="*" element={<Login />} />
-      </Routes>
+          {/* Default redirect */}
+          <Route path="*" element={<Login />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }

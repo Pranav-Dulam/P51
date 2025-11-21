@@ -28,40 +28,51 @@ export default function LoginPage() {
     };
 
     return (
-        <main style={{ maxWidth: 400, margin: "40px auto" }}>
-            <h2>Login</h2>
+        <main className="flex items-center justify-center min-h-screen bg-gray-50 px-4">
+            <div className="w-full max-w-sm bg-white shadow-lg rounded-lg p-6">
+                <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
 
-            {error && (
-                <p style={{ color: "red" }} role="alert">
-                    {error}
-                </p>
-            )}
+                {error && (
+                    <p className="text-red-600 text-center mb-3" role="alert">
+                        {error}
+                    </p>
+                )}
 
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="username">Username</label>
-                <input 
-                    id="username"
-                    type="text" 
-                    value={form.username} 
-                    onChange={(e) => 
-                        setForm({ ...form, username: e.target.value })
-                    }
-                    required 
-                />
+                <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                    <div className="flex flex-col">
+                        <label htmlFor="username" className="font-medium">Username</label>
+                        <input
+                            id="username"
+                            autoComplete="username"
+                            type="text"
+                            value={form.username}
+                            onChange={(e) => setForm({ ...form, username: e.target.value })}
+                            required
+                            className="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:ring-blue-300"
+                        />
+                    </div>
 
-                <label htmlFor="password">Password</label>
-                <input 
-                    id="password"
-                    type="password" 
-                    value={form.password} 
-                    onChange={(e) => 
-                        setForm({ ...form, password: e.target.value })
-                    }
-                    required 
-                />
+                    <div className="flex flex-col">
+                        <label htmlFor="password" className="font-medium">Password</label>
+                        <input
+                            id="password"
+                            autoComplete="current-password"
+                            type="password"
+                            value={form.password}
+                            onChange={(e) => setForm({ ...form, password: e.target.value })}
+                            required
+                            className="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:ring-blue-300"
+                        />
+                    </div>
 
-                <button type="submit" style={{ marginTop: "10px" }}>Login</button>
-            </form>
+                    <button
+                        type="submit"
+                        className="mt-2 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+                    >
+                        Login
+                    </button>
+                </form>
+            </div>
         </main>
     );
 }
