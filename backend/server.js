@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 
 const authRoutes = require("./routes/auth");
+const chartRoutes = require("./routes/charts");
 
 const app = express();
 
@@ -19,6 +20,9 @@ app.get("/api/health", (req, res) => {
 
 // Auth routes
 app.use("/api", authRoutes);
+
+//Chart routes
+app.use("/api/charts", chartRoutes);
 
 // Start server
 const PORT = 3000;
