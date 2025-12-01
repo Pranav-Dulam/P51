@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../auth/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
+import "./Design/Login.css";
 
 export default function LoginPage() {
     const { login } = useContext(AuthContext);
@@ -13,6 +14,8 @@ export default function LoginPage() {
     });
 
     const [error, setError] = useState("");
+    const [emoji, setEmoji] = useState("🙂");
+    const [emojiPos, setEmojiPos] = useState("upper");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -20,54 +23,75 @@ export default function LoginPage() {
 
         try {
             const res = await axios.post("http://localhost:3000/api/login", form);
+            setEmoji("😊");
             login(res.data.token);
             navigate("/dashboard");
         } catch {
+            setEmoji("😢");
             setError("Invalid username or password");
         }
     };
 
     return (
-        <main className="flex items-center justify-center min-h-screen bg-gray-50 px-4">
-            <div className="w-full max-w-sm bg-white shadow-lg rounded-lg p-6">
-                <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
+        <main className="login-container">
+            <div className="login-box">
+                <div className={`login-emoji ${emojiPos}`}>{emoji}</div>
+                <h2 className="login-title">Login</h2>
 
                 {error && (
-                    <p className="text-red-600 text-center mb-3" role="alert">
+                    <p className="login-error" role="alert">
                         {error}
                     </p>
                 )}
 
-                <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                    <div className="flex flex-col">
+                <form onSubmit={handleSubmit} className="login-form">
+                    <div className="login-field">
                         <label htmlFor="username" className="font-medium">Username</label>
                         <input
                             id="username"
                             autoComplete="username"
                             type="text"
                             value={form.username}
-                            onChange={(e) => setForm({ ...form, username: e.target.value })}
+                            onFocus={() => { setEmoji("🧐"); setEmojiPos("upper"); }}
+                            onChange={(e) => {
+                                setForm({ ...form, username: e.target.value });
+                                setEmoji("🧐");
+                                setEmojiPos("middle");
+                            }}
+                            onBlur={() => {
+                                setEmoji("🙂");
+                                setEmojiPos("upper");
+                            }}
                             required
-                            className="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:ring-blue-300"
+                            className="login-input"
                         />
                     </div>
 
-                    <div className="flex flex-col">
+                    <div className="login-field">
                         <label htmlFor="password" className="font-medium">Password</label>
                         <input
                             id="password"
                             autoComplete="current-password"
                             type="password"
                             value={form.password}
-                            onChange={(e) => setForm({ ...form, password: e.target.value })}
+                            onFocus={() => { setEmoji("🧐"); setEmojiPos("lower"); }}
+                            onChange={(e) => {
+                                setForm({ ...form, password: e.target.value });
+                                setEmoji("🧐");
+                                setEmojiPos("lower");
+                            }}
+                            onBlur={() => {
+                                setEmoji("🙂");
+                                setEmojiPos("middle");
+                            }}
                             required
-                            className="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:ring-blue-300"
+                            className="login-input"
                         />
                     </div>
 
                     <button
                         type="submit"
-                        className="mt-2 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+                        className="login-button"
                     >
                         Login
                     </button>

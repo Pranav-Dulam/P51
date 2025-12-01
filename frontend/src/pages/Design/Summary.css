@@ -1,0 +1,52 @@
+/* Main container for the Summary page */
+.summary-container {
+  padding: 100px 30px 40px 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Page heading */
+.summary-heading {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1f2937; /* gray-800 */
+  margin-bottom: 20px;
+}
+
+/* Chart container */
+.summary-chart-box {
+  width: 90%;
+  height: 380px;
+  margin: 20px auto 0 auto;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.12);
+  border: 1px solid #e5e7eb;
+}
+
+/* Description text */
+.summary-description {
+  max-width: 850px;
+  margin-top: 20px;
+  line-height: 1.7;
+  color: #374151; /* gray-700 */
+  font-size: 1.05rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .summary-container {
+    padding: 80px 20px 30px 20px;
+  }
+
+  .summary-chart-box {
+    width: 100%;
+    height: 300px;
+  }
+
+  .summary-description {
+    font-size: 1rem;
+  }
+}

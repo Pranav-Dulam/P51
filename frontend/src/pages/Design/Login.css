@@ -1,0 +1,152 @@
+/* Full page container */
+.login-container {
+  min-height: 100vh;
+  background: #f9fafb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+}
+
+/* Emoji beside login box */
+.login-emoji {
+  font-size: 48px;
+  animation: emoji-pulse 1.1s ease-in-out infinite;
+  transform-origin: center right;
+
+  /* Position emoji EXACTLY beside the login box */
+  position: absolute;
+  right: -65px;     /* places emoji just outside the box on the right */
+  top: 80px;         /* place emoji at 80px from the top */
+  transform: none;
+}
+
+.login-emoji.upper {
+  top: 40px;
+  transition: all 0.25s ease;
+}
+
+.login-emoji.middle {
+  top: 95px;
+  transition: all 0.25s ease;
+}
+
+.login-emoji.lower {
+  top: 150px;
+  transition: all 0.25s ease;
+}
+
+/* Login card */
+.login-box {
+  width: 100%;
+  max-width: 380px;
+  background: #ffffff;
+  padding: 30px 26px;
+  border-radius: 12px;
+  box-shadow: 0px 3px 10px rgba(0,0,0,0.12);
+  border: 1px solid #e5e7eb;
+  position: relative;
+}
+
+/* Title */
+.login-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #1f2937; /* gray-800 */
+}
+
+/* Error text */
+.login-error {
+  text-align: center;
+  color: #dc2626; /* red-600 */
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+/* Form layout */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Field container */
+.login-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Input fields */
+.login-input {
+  padding: 10px 12px;
+  border: 1px solid #d1d5db; /* gray-300 */
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.login-input:focus {
+  border-color: #2563eb; /* blue-600 */
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+}
+
+/* Login button */
+.login-button {
+  background: #2563eb; /* blue-600 */
+  color: white;
+  padding: 10px 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: background 0.2s ease;
+}
+
+.login-button:hover {
+  background: #1d4ed8; /* blue-700 */
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .login-box {
+    padding: 24px;
+  }
+
+  .login-title {
+    font-size: 1.6rem;
+  }
+}
+
+@keyframes emoji-bounce {
+  0% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes emoji-pulse {
+  0% {
+    transform: scale(1) translateX(0);
+  }
+  50% {
+    transform: scale(1.12) translateX(4px);
+  }
+  100% {
+    transform: scale(1) translateX(0);
+  }
+}

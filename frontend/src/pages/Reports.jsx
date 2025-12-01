@@ -9,6 +9,7 @@ import {
   CartesianGrid,
   ResponsiveContainer
 } from "recharts";
+import "./Design/Reports.css";
 import { AuthContext } from "../auth/AuthContext";
 
 export default function Reports() {
@@ -25,10 +26,10 @@ export default function Reports() {
   // Removed Anime.js animation useEffect and SVG point calculations
 
   return (
-    <div className="px-6 pt-24 pb-10">
-      <h2 className="text-3xl font-bold mb-6">AI Video Generation Trend</h2>
+    <div className="reports-container">
+      <h2 className="reports-heading">AI Video Generation Trend</h2>
 
-      <div className="w-[90%] h-[400px] mx-auto bg-white shadow-md rounded-lg p-4">
+      <div className="reports-chart-box">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={data}>
             <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
@@ -45,7 +46,7 @@ export default function Reports() {
         </ResponsiveContainer>
       </div>
 
-      <p className="max-w-3xl leading-relaxed text-gray-700 mt-6">
+      <p className="reports-description">
         This line chart displays the growth of AI-generated videos from June to October 2025. 
         The data comes from the backend MySQL database and is visualized using Recharts.
       </p>

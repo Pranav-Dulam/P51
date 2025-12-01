@@ -10,6 +10,7 @@ import {
   ResponsiveContainer
 } from "recharts";
 import { AuthContext } from "../auth/AuthContext";
+import "./Design/Summary.css";
 
 export default function Summary() {
   const { token } = useContext(AuthContext);
@@ -25,10 +26,10 @@ export default function Summary() {
   }, [token]);
 
   return (
-    <div className="px-6 pt-24 pb-10">
-      <h2 className="text-3xl font-bold mb-6">AI Model Adoption Chart</h2>
+    <div className="summary-container">
+      <h2 className="summary-heading">AI Model Adoption Chart</h2>
 
-      <div className="w-[90%] h-[400px] mx-auto bg-white shadow-md rounded-lg p-4">
+      <div className="summary-chart-box">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data}>
             <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
@@ -40,7 +41,7 @@ export default function Summary() {
         </ResponsiveContainer>
       </div>
 
-      <p className="max-w-3xl leading-relaxed text-gray-700 mt-6">
+      <p className="summary-description">
         This bar chart illustrates the number of real-world projects built using Google’s
         latest Generative AI innovations such as Gemini 2.5 Pro, Gemini 2.5 Flash, Flash Image,
         and Veo 3. Data is retrieved dynamically from the backend API connected to MySQL.
