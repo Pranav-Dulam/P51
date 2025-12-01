@@ -22,13 +22,13 @@ export default function LoginPage() {
         setError("");
 
         try {
-            const res = await axios.post("http://localhost:3000/api/login", form);
+            const res = await axios.post("http://localhost:5000/api/login", form);
             setEmoji("😊");
-            login(res.data.token);
+            login(res.data.token, res.data.user);
             navigate("/dashboard");
         } catch {
             setEmoji("😢");
-            setError("Invalid username or password");
+            setError("Incorrect username or password");
         }
     };
 

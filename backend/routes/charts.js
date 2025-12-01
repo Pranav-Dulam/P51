@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const db = require("../config/db");
+const db = require("../db");
 const auth = require("../middleware/auth");
 
 // GET Summary Chart Data
@@ -44,5 +44,6 @@ router.get("/reports", auth, async (req, res) => {
     });
   }
 });
+
 
 module.exports = router;
