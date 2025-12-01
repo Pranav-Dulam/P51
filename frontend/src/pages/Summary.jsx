@@ -21,7 +21,7 @@ export default function Summary() {
       headers: { Authorization: `Bearer ${token}` }
     })
     .then(res => {
-      setData(res.data);
+      setData(res.data.data);
     });
   }, [token]);
 
@@ -33,10 +33,10 @@ export default function Summary() {
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data}>
             <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-            <XAxis dataKey="model_name" />
+            <XAxis dataKey="name" />
             <YAxis />
             <Tooltip />
-            <Bar dataKey="projects" fill="#4f46e5" />
+            <Bar dataKey="value" fill="#4f46e5" />
           </BarChart>
         </ResponsiveContainer>
       </div>

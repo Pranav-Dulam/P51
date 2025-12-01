@@ -3,19 +3,19 @@ import { createContext, useState } from "react";
 export const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
+  // Do NOT JSON.parse() anything unless it's actually JSON.
   const [token, setToken] = useState(localStorage.getItem("token") || null);
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")) || null);
 
-  const login = (jwt, userData) => {
+  // Your backend does NOT return a user object — so remove user handling.
+  const [user, setUser] = useState(null);
+
+  const login = (jwt) => {
     localStorage.setItem("token", jwt);
-    localStorage.setItem("user", JSON.stringify(userData));
     setToken(jwt);
-    setUser(userData);
   };
 
   const logout = () => {
     localStorage.removeItem("token");
-    localStorage.removeItem("user");
     setToken(null);
     setUser(null);
   };

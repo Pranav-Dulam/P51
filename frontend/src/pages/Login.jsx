@@ -22,9 +22,14 @@ export default function LoginPage() {
         setError("");
 
         try {
-            const res = await axios.post("http://localhost:5000/api/login", form);
+            const res = await axios.post("http://localhost:3000/api/login", {
+                username: form.username,
+                password: form.password
+            }, {
+                headers: { "Content-Type": "application/json" }
+            });
             setEmoji("😊");
-            login(res.data.token, res.data.user);
+            login(res.data.token);
             navigate("/dashboard");
         } catch {
             setEmoji("😢");

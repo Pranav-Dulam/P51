@@ -1,54 +1,104 @@
 import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import {
+  BarChart,
+  Bar,
   LineChart,
   Line,
   XAxis,
   YAxis,
   Tooltip,
   CartesianGrid,
-  ResponsiveContainer
+  ResponsiveContainer,
+  Legend
 } from "recharts";
 import "./Design/Reports.css";
 import { AuthContext } from "../auth/AuthContext";
 
 export default function Reports() {
   const { token } = useContext(AuthContext);
-  const [data, setData] = useState([]);
+
+  const [adoption, setAdoption ] = useState([]);
+  const [efficiency, setEfficiency] = useState([]);
+  const [cost, setCost] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/api/charts/reports", {
+    axios
+      .get("http://localhost:3000/api/charts/reports/adoption", {
       headers: { Authorization: `Bearer ${token}` }
     })
-    .then(res => setData(res.data));
-  }, [token]);
+    .then(res => setAdoption(res.data.data));
 
-  // Removed Anime.js animation useEffect and SVG point calculations
+    axios
+      .get("http://localhost:3000/api/charts/reports/efficiency", {
+        headers: { Authorization: `Bearer ${token}`}
+      })
+      .then((res) => setEfficiency(res.data.data));
+
+      axios
+      .get("http://localhost:3000/api/charts/reports/cost", {
+        headers: {Authorization: `Bearer ${token}`}
+      })
+      .then((res) => setCost(res.data.data));
+  }, [token]);
 
   return (
     <div className="reports-container">
-      <h2 className="reports-heading">AI Video Generation Trend</h2>
-
+      {/* ---------Chart 1: Adoption --------- */}
+      <h2 className="reports-heading">GenAI Model Adoption from Last 6 Months</h2>
       <div className="reports-chart-box">
         <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={data}>
+          <BarChart data={adoption}>
             <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-            <XAxis dataKey="month" />
+            <XAxis dataKey="name" />
             <YAxis />
             <Tooltip />
-            <Line
-              type="monotone"
-              dataKey="videos_million"
-              stroke="#ef4444"
-              strokeWidth={3}
-            />
+            <Legend />
+            <Bar dataKey="value" fill="#6366f1" />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+      <p className="reports-description">
+        This bar chart illustrates the adoption of leading GenAI models over the last six months.
+        Data comes from the MySQL database and reflects recent industry trends.
+      </p>
+
+      {/* ------------ Chart 2: Efficiency ------------ */}
+      <h2 className="reports-heading">Model Efficiency (Tokens per second)</h2>
+      <div className="reports-chart-box">
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart data={efficiency}>
+            <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Line type="monotone" dataKey="value" stroke="#22c55e" strokeWidth={3} />
           </LineChart>
         </ResponsiveContainer>
       </div>
-
       <p className="reports-description">
-        This line chart displays the growth of AI-generated videos from June to October 2025. 
-        The data comes from the backend MySQL database and is visualized using Recharts.
+        This line chart compares model efficiency across leading AI model efficiency across leading AI models. visualizing token output.
+        performance based on backend MySQL data.
+      </p>
+
+      {/* --------------- Chart 3: Cost Reduction --------------- */}
+      <h2 className="reports-heading">Training Cost Reduction (%)</h2>
+      <div className="reports-chart-box">
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart data={cost}>
+            <CartesianGrid stroke="#ccc" strokeDasharray= "5 5" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="value" fill="#ef4444" />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+      <p className="reports-description">
+        This bar chart shows GPU and compute cost reductions achieved by Leading GenAI labs.
+        Data is sourced directly from MySQL dataset.
       </p>
     </div>
   );
