@@ -23,23 +23,37 @@ export default function Reports() {
   const [cost, setCost] = useState([]);
 
   useEffect(() => {
+    if (!token) return; // Prevent API calls when no token
+
     axios
       .get("http://localhost:3000/api/charts/reports/adoption", {
-      headers: { Authorization: `Bearer ${token}` }
-    })
-    .then(res => setAdoption(res.data.data));
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json"
+        }
+      })
+      .then((res) => setAdoption(res.data.data))
+      .catch((err) => console.error("Adoption API Error:", err));
 
     axios
       .get("http://localhost:3000/api/charts/reports/efficiency", {
-        headers: { Authorization: `Bearer ${token}`}
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json"
+        }
       })
-      .then((res) => setEfficiency(res.data.data));
+      .then((res) => setEfficiency(res.data.data))
+      .catch((err) => console.error("Efficiency API Error:", err));
 
-      axios
+    axios
       .get("http://localhost:3000/api/charts/reports/cost", {
-        headers: {Authorization: `Bearer ${token}`}
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json"
+        }
       })
-      .then((res) => setCost(res.data.data));
+      .then((res) => setCost(res.data.data))
+      .catch((err) => console.error("Cost API Error:", err));
   }, [token]);
 
   return (

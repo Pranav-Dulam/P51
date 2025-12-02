@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-
+/* eslint-disable react-refresh/only-export-components */
 export const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {

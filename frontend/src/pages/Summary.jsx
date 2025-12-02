@@ -17,11 +17,19 @@ export default function Summary() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
+    if (!token) return; // Prevent API call if token is missing
+
     axios.get("http://localhost:3000/api/charts/summary", {
-      headers: { Authorization: `Bearer ${token}` }
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
+      }
     })
     .then(res => {
       setData(res.data.data);
+    })
+    .catch(err => {
+      console.error("Summary API Error:", err);
     });
   }, [token]);
 
