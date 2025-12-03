@@ -6,7 +6,7 @@ const auth = require("../middleware/auth");
 // GET Summary Chart Data
 router.get("/summary", auth, async (req, res) => {
   try {
-    if (!req.user || !req.user.username) {
+    if (!req.user) {
       return res.status(401).json({ error: "Unauthorized request" });
     }
     const [rows] = await db.query("SELECT * FROM chart_summary");
@@ -27,7 +27,7 @@ router.get("/summary", auth, async (req, res) => {
 // GET Reports Chart Data
 router.get("/reports", auth, async (req, res) => {
   try {
-    if (!req.user || !req.user.username) {
+    if (!req.user) {
       return res.status(401).json({ error: "Unauthorized request" });
     }
     const [rows] = await db.query("SELECT * FROM chart_reports");
@@ -48,7 +48,7 @@ router.get("/reports", auth, async (req, res) => {
 // GET GenAI Adoption Chart Data (chart_reports2)
 router.get("/reports/adoption", auth, async (req, res) => {
   try {
-    if (!req.user || !req.user.username) {
+    if (!req.user) {
       return res.status(401).json({ error: "Unauthorized request" });
     }
 
@@ -72,7 +72,7 @@ router.get("/reports/adoption", auth, async (req, res) => {
 // GET Model Efficiency Chart Data (modelefficiency)
 router.get("/reports/efficiency", auth, async (req, res) => {
   try {
-    if (!req.user || !req.user.username) {
+    if (!req.user) {
       return res.status(401).json({ error: "Unauthorized request" });
     }
 
@@ -96,7 +96,7 @@ router.get("/reports/efficiency", auth, async (req, res) => {
 // GET Cost Reduction Chart Data (cost)
 router.get("/reports/cost", auth, async (req, res) => {
   try {
-    if (!req.user || !req.user.username) {
+    if (!req.user) {
       return res.status(401).json({ error: "Unauthorized request" });
     }
 

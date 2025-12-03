@@ -7,18 +7,28 @@ import NavBar from "./components/NavBar.jsx";
 import ProtectedRoute from "./auth/ProtectedRoute.jsx";
 import ChartCard from "./components/ChartCard";
 import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { AuthContext } from "./auth/AuthContext";
 
 function App() {
   const [userCount, setUserCount] = useState(0);
+  const { token } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/users-count")
+    if (!token) return;
+
+    fetch("http://localhost:3000/api/users-count", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
+      }
+    })
       .then(res => res.json())
       .then(data => {
         setUserCount(data.count);
       })
       .catch(() => setUserCount(0));
-  }, []);
+  }, [token]);
   return (
     <BrowserRouter>
       <NavBar />

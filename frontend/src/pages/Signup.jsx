@@ -16,7 +16,7 @@ function Signup() {
   const handleSignup = async (e) => {
     e.preventDefault();
 
-    const response = await fetch("http://localhost:5000/api/signup", {
+    const response = await fetch("http://localhost:3000/api/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form),
@@ -28,7 +28,7 @@ function Signup() {
       alert("Account created! You can now log in.");
       navigate("/login");
     } else {
-      alert(data.error);
+      alert(data.message || "Signup failed");
     }
   };
 

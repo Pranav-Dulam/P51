@@ -1,15 +1,24 @@
 import { createContext, useState } from "react";
 /* eslint-disable react-refresh/only-export-components */
+
 export const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
-  // Do NOT JSON.parse() anything unless it's actually JSON.
-  const [token, setToken] = useState(localStorage.getItem("token") || null);
+  // Safely load token — remove invalid values like "undefined"
+  const rawToken = localStorage.getItem("token");
+  const safeToken = rawToken && rawToken !== "undefined" ? rawToken : null;
 
-  // Your backend does NOT return a user object — so remove user handling.
+  const [token, setToken] = useState(safeToken);
+
+  // Remove user handling since backend doesn't return one
   const [user, setUser] = useState(null);
 
   const login = (jwt) => {
+    if (!jwt || jwt === "undefined" || jwt === undefined || jwt === null) {
+      localStorage.removeItem("token");
+      setToken(null);
+      return;
+    }
     localStorage.setItem("token", jwt);
     setToken(jwt);
   };
