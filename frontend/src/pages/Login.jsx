@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../auth/AuthContext.jsx";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./Design/Login.css";
 
 export default function LoginPage() {
@@ -22,7 +22,7 @@ export default function LoginPage() {
         setError("");
 
         try {
-            const res = await axios.post("http://localhost:3000/api/login", {
+            const res = await axios.post("http://localhost:3000/api/auth/login", {
                 username: form.username,
                 password: form.password
             }, {
@@ -101,6 +101,21 @@ export default function LoginPage() {
                         Login
                     </button>
                 </form>
+                <p className="signup-text">
+                    Don't have an account?{" "}
+                    <Link
+                      to="/signup"
+                      className="signup-link"
+                      style={{
+                        color: "#3b5bfd",
+                        fontWeight: "700",
+                        textDecoration: "underline",
+                        fontSize: "16px"
+                      }}
+                    >
+                        Sign up
+                    </Link>
+                </p>
             </div>
         </main>
     );

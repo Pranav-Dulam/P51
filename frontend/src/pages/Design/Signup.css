@@ -1,0 +1,122 @@
+/* ===== Signup Page Styling (Matches Login.css Look) ===== */
+
+.signup-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f5f6fa; /* same background style as login */
+  padding: 20px;
+}
+
+.signup-card {
+  background: #ffffff;
+  padding: 40px 35px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* match login shadow */
+  position: relative;
+}
+
+.signup-title {
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 15px;
+  color: #1c1c1e; /* same as login */
+}
+
+.signup-subtitle {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #555;
+  font-size: 15px;
+}
+
+/* Labels */
+.signup-label {
+  display: block;
+  font-size: 15px;
+  margin-bottom: 6px;
+  margin-top: 15px;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Input fields */
+.signup-input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1.4px solid #d1d1d1;
+  transition: 0.25s ease;
+  font-size: 15px;
+  outline: none;
+}
+
+.signup-input:focus {
+  border-color: #3b5bfd; /* same login focus color */
+  box-shadow: 0 0 6px rgba(59, 91, 253, 0.25);
+}
+
+/* Button */
+.signup-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background: #3b5bfd; /* login primary button */
+  color: white;
+  font-size: 17px;
+  font-weight: 600;
+  border-radius: 8px;
+  margin-top: 28px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.signup-btn:hover {
+  background: #2f49e0; /* login hover */
+}
+
+/* Message Section */
+.signup-message {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 14px;
+  color: #444;
+}
+
+.signup-login-link {
+  color: #3b5bfd;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.signup-login-link:hover {
+  text-decoration: underline;
+}
+
+/* ===== Signup Emoji Styling ===== */
+
+.signup-emoji {
+  position: absolute;
+  right: -55px;      /* emoji sits beside input box */
+  top: 145px;        /* aligned with first input field */
+  font-size: 42px;
+  animation: floatEmoji 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Floating animation */
+@keyframes floatEmoji {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}

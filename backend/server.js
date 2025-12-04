@@ -29,13 +29,13 @@ app.get("/api/health", (req, res) => {
 });
 
 // Auth routes
-app.use("/api", authRoutes);
+app.use("/api/auth", authRoutes);
 
 //Chart routes
 app.use("/api/charts", chartRoutes);
 
 //Stats route
-app.use("/api", statsRoutes);
+app.use("/api/auth", statsRoutes);
 
 app.use((err, req, res, next) => {
     console.error("Global Error:", err.stack);

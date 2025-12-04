@@ -38,15 +38,17 @@ export default function Summary() {
       <h2 className="summary-heading">AI Model Adoption Chart</h2>
 
       <div className="summary-chart-box">
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={data}>
-            <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Bar dataKey="value" fill="#4f46e5" />
-          </BarChart>
-        </ResponsiveContainer>
+        <div style={{ width: "100%", height: 300}}>
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={data}>
+              <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Bar dataKey="value" fill="#4f46e5" />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
       </div>
 
       <p className="summary-description">
