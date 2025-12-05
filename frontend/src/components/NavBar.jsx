@@ -11,22 +11,22 @@ export default function NavBar() {
   if (location.pathname === "/login" || !token) return null;
 
   const isActive = (path) =>
-    location.pathname === path ? "nav-link active" : "nav-link";
+    location.pathname === path ? "nav-link tron-link active" : "nav-link tron-link";
 
   return (
     <>
       {/* NAVBAR */}
-      <nav className="navbar" aria-label="Main Navigation">
-        <div className="navbar-inner">
+      <nav className="navbar tron-navbar" aria-label="Main Navigation">
+        <div className="navbar-inner tron-navbar-inner">
 
           {/* Branding */}
-          <span className="navbar-brand">P51</span>
+          <span className="navbar-brand tron-brand">P51</span>
 
           {/* Hamburger Button */}
           <button
             type="button"
             onClick={() => setOpen(!open)}
-            className="navbar-toggle"
+            className="navbar-toggle tron-toggle"
             aria-controls="navbar-menu"
             aria-expanded={open}
           >
@@ -37,7 +37,7 @@ export default function NavBar() {
           {/* Menu */}
           <div
             id="navbar-menu"
-            className={`navbar-menu ${open ? "navbar-menu-open" : "navbar-menu-closed"}`}
+            className={`navbar-menu tron-menu ${open ? "navbar-menu-open" : "navbar-menu-closed"}`}
           >
             <ul className="navbar-list">
 
@@ -62,7 +62,7 @@ export default function NavBar() {
               <li>
                 <button
                   onClick={() => { logout(); setOpen(false); }}
-                  className="nav-logout"
+                  className="nav-logout tron-logout"
                 >
                   Logout
                 </button>

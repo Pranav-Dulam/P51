@@ -29,8 +29,10 @@ export function AuthProvider({ children }) {
     setUser(null);
   };
 
+  const isAuthenticated = token !== null && token !== "undefined";
+
   return (
-    <AuthContext.Provider value={{ token, user, login, logout }}>
+    <AuthContext.Provider value={{ token, user, login, logout, isAuthenticated }}>
       {children}
     </AuthContext.Provider>
   );

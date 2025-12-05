@@ -38,10 +38,11 @@ export default function LoginPage() {
     };
 
     return (
-        <main className="login-container">
-            <div className="login-box">
-                <div className={`login-emoji ${emojiPos}`}>{emoji}</div>
-                <h2 className="login-title">Login</h2>
+        <main className="login-container tron-wrapper">
+            <div className="tron-bg"></div>
+            <div className="login-box tron-box">
+                <div className={`login-emoji tron-emoji ${emojiPos}`}>{emoji}</div>
+                <h2 className="login-title tron-title">Login</h2>
 
                 {error && (
                     <p className="login-error" role="alert">
@@ -68,7 +69,7 @@ export default function LoginPage() {
                                 setEmojiPos("upper");
                             }}
                             required
-                            className="login-input"
+                            className="login-input tron-input"
                         />
                     </div>
 
@@ -90,13 +91,13 @@ export default function LoginPage() {
                                 setEmojiPos("middle");
                             }}
                             required
-                            className="login-input"
+                            className="login-input tron-input"
                         />
                     </div>
 
                     <button
                         type="submit"
-                        className="login-button"
+                        className="login-button tron-button"
                     >
                         Login
                     </button>
