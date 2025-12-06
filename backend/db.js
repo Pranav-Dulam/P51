@@ -2,10 +2,10 @@ const mysql = require("mysql2");
 
 // Use same config for Mac + DigitalOcean
 const pool = mysql.createPool({
-  host: "localhost",
-  user: "p51user",
-  password: "123",            // NO PASSWORD ANYWHERE
-  database: "genai_projects",
+  host: process.env.DB_HOST || "localhost",
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0
