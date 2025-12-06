@@ -1,4 +1,4 @@
-require("dotenv").config();
+require("dotenv").config({ path: __dirname + "/.env" });
 const express = require("express");
 const cors = require("cors");
 
@@ -50,7 +50,8 @@ app.use((err, req, res, next) => {
 });
 
 if (!process.env.JWT_SECRET) {
-    console.warn("WARNING: JWT_SECRET is missing from the environment!");
+    console.error("❌ FATAL: JWT_SECRET is missing from .env — backend cannot start without it.");
+    process.exit(1);
 }
 
 // Start server
