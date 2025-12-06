@@ -69,14 +69,14 @@ router.get("/reports/adoption", auth, async (req, res) => {
   }
 });
 
-// GET Model Efficiency Chart Data (modelefficiency)
+// GET Model Efficiency Chart Data (efficiency)
 router.get("/reports/efficiency", auth, async (req, res) => {
   try {
     if (!req.user) {
       return res.status(401).json({ error: "Unauthorized request" });
     }
 
-    const [rows] = await db.query("SELECT * FROM modelefficiency");
+    const [rows] = await db.query("SELECT * FROM efficiency");
 
     const formatted = rows.map(r => ({
       name: r.name,

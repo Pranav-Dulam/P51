@@ -51,11 +51,17 @@ export default function Summary() {
         </div>
       </div>
 
+      <img 
+        src={`${import.meta.env.BASE_URL}summary_chart.png`} 
+        alt="Summary Chart" 
+        className="summary-image"
+      />
+
       <p className="summary-description">
         This bar chart illustrates the number of real-world projects built using Google’s
         latest Generative AI innovations such as Gemini 2.5 Pro, Gemini 2.5 Flash, Flash Image,
         and Veo 3. Data is retrieved dynamically from the backend API connected to MySQL.
-      </p>
+      </p>ß
     </div>
   );
 }

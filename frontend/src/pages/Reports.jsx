@@ -61,7 +61,7 @@ export default function Reports() {
       {/* ---------Chart 1: Adoption --------- */}
       <h2 className="reports-heading">GenAI Model Adoption from Last 6 Months</h2>
       <div className="reports-chart-box">
-        <ResponsiveContainer width="100%" height="100%">
+        <ResponsiveContainer width="100%" height={300}>
           <BarChart data={adoption}>
             <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
             <XAxis dataKey="name" />
@@ -80,7 +80,7 @@ export default function Reports() {
       {/* ------------ Chart 2: Efficiency ------------ */}
       <h2 className="reports-heading">Model Efficiency (Tokens per second)</h2>
       <div className="reports-chart-box">
-        <ResponsiveContainer width="100%" height="100%">
+        <ResponsiveContainer width="100%" height={300}>
           <LineChart data={efficiency}>
             <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
             <XAxis dataKey="name" />
@@ -99,7 +99,7 @@ export default function Reports() {
       {/* --------------- Chart 3: Cost Reduction --------------- */}
       <h2 className="reports-heading">Training Cost Reduction (%)</h2>
       <div className="reports-chart-box">
-        <ResponsiveContainer width="100%" height="100%">
+        <ResponsiveContainer width="100%" height={300}>
           <BarChart data={cost}>
             <CartesianGrid stroke="#ccc" strokeDasharray= "5 5" />
             <XAxis dataKey="name" />
