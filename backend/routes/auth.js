@@ -20,6 +20,7 @@ router.post("/signup", async (req, res) => {
 
         return res.status(200).json({ message: "Account created successfully" });
     } catch (err) {
+        console.error("SIGNUP ERROR:", err); // Log full MySQL / bcrypt error
         if (err.code === "ER_DUP_ENTRY") {
             return res.status(400).json({ error: "Username already exists" });
         }
@@ -65,6 +66,7 @@ router.post("/login", async (req, res) => {
             }
         });
     } catch (err) {
+        console.error("LOGIN ERROR:", err); // Log full DB / bcrypt / JWT issues
         return res.status(500).json({ error: "Server error" });
     }
 });

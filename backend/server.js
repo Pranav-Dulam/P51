@@ -34,8 +34,8 @@ app.use("/api/auth", authRoutes);
 //Chart routes
 app.use("/api/charts", chartRoutes);
 
-//Stats route
-app.use("/api/auth", statsRoutes);
+// Stats route
+app.use("/api/stats", statsRoutes);
 
 app.use((err, req, res, next) => {
     console.error("Global Error:", err.stack);
