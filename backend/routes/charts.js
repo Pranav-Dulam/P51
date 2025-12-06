@@ -10,10 +10,14 @@ router.get("/summary", auth, async (req, res) => {
       return res.status(401).json({ error: "Unauthorized request" });
     }
     const [rows] = await db.query("SELECT * FROM chart_reports2");
+    const formatted = rows.map(r => ({
+      name: r.model || r.name,
+      value: r.value || r.usage || r.efficiency || r.cost || 0
+    }));
+
     return res.status(200).json({
       success: true,
-      count: rows.length,
-      data: rows,
+      data: formatted
     });
   } catch (err) {
     console.error("Summary chart DB error:", err);
@@ -31,10 +35,14 @@ router.get("/reports", auth, async (req, res) => {
       return res.status(401).json({ error: "Unauthorized request" });
     }
     const [rows] = await db.query("SELECT * FROM chart_reports2");
+    const formatted = rows.map(r => ({
+      name: r.model || r.name,
+      value: r.value || r.usage || r.efficiency || r.cost || 0
+    }));
+
     return res.status(200).json({
       success: true,
-      count: rows.length,
-      data: rows,
+      data: formatted
     });
   } catch (err) {
     console.error("Reports chart DB error:", err);
@@ -79,7 +87,7 @@ router.get("/reports/efficiency", auth, async (req, res) => {
     const [rows] = await db.query("SELECT * FROM modelefficiency");
 
     const formatted = rows.map(r => ({
-      name: r.name,
+      name: r.model,
       value: r.efficiency
     }));
 
@@ -103,7 +111,7 @@ router.get("/reports/cost", auth, async (req, res) => {
     const [rows] = await db.query("SELECT * FROM modelcost");
 
     const formatted = rows.map(r => ({
-      name: r.name,
+      name: r.model,
       value: r.cost
     }));
 
