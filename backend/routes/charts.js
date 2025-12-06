@@ -8,11 +8,11 @@ const auth = require("../middleware/auth");
 // =========================
 router.get("/summary", auth, async (req, res) => {
   try {
-    const [rows] = await db.query("SELECT * FROM chart_reports2");
+    const [rows] = await db.query("SELECT month, videos FROM chart_reports2");
 
     const formatted = rows.map(r => ({
-      name: r.model || r.name,
-      value: r.usage || r.efficiency || r.cost || r.value || 0
+      name: r.month,
+      value: r.videos
     }));
 
     return res.json({ success: true, data: formatted });
@@ -27,11 +27,11 @@ router.get("/summary", auth, async (req, res) => {
 // =========================
 router.get("/reports", auth, async (req, res) => {
   try {
-    const [rows] = await db.query("SELECT * FROM chart_reports2");
+    const [rows] = await db.query("SELECT month, videos FROM chart_reports2");
 
     const formatted = rows.map(r => ({
-      name: r.model || r.name,
-      value: r.usage || r.efficiency || r.cost || r.value || 0
+      name: r.month,
+      value: r.videos
     }));
 
     return res.json({ success: true, data: formatted });
@@ -48,10 +48,10 @@ router.get("/reports", auth, async (req, res) => {
 // =========================
 router.get("/reports/adoption", auth, async (req, res) => {
   try {
-    const [rows] = await db.query("SELECT name, usage FROM genaiadoption");
+    const [rows] = await db.query("SELECT industry, usage FROM genaiadoption");
 
     const formatted = rows.map(r => ({
-      name: r.name,
+      name: r.industry,
       value: r.usage
     }));
 
