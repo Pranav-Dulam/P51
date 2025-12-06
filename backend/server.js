@@ -28,7 +28,7 @@ app.use(cors({
 }));
 
 // Fix preflight OPTIONS requests
-app.options("/api/*", cors({
+app.options("/.*/", cors({
     origin: [
         "http://localhost:5173",
         "http://127.0.0.1:5173",
