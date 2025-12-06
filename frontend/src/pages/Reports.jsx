@@ -26,7 +26,7 @@ export default function Reports() {
     if (!token) return; // Prevent API calls when no token
 
     axios
-      .get("http://localhost:3000/api/charts/reports/adoption", {
+      .get("http://159.65.180.152:3000/api/charts/reports/adoption", {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json"
@@ -36,7 +36,7 @@ export default function Reports() {
       .catch((err) => console.error("Adoption API Error:", err));
 
     axios
-      .get("http://localhost:3000/api/charts/reports/efficiency", {
+      .get("http://159.65.180.152:3000/api/charts/reports/efficiency", {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json"
@@ -46,7 +46,7 @@ export default function Reports() {
       .catch((err) => console.error("Efficiency API Error:", err));
 
     axios
-      .get("http://localhost:3000/api/charts/reports/cost", {
+      .get("http://159.65.180.152:3000/api/charts/reports/cost", {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json"
