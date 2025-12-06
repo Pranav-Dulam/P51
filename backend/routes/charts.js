@@ -9,7 +9,7 @@ router.get("/summary", auth, async (req, res) => {
     if (!req.user) {
       return res.status(401).json({ error: "Unauthorized request" });
     }
-    const [rows] = await db.query("SELECT * FROM chart_summary");
+    const [rows] = await db.query("SELECT * FROM chart_reports2");
     return res.status(200).json({
       success: true,
       count: rows.length,
@@ -30,7 +30,7 @@ router.get("/reports", auth, async (req, res) => {
     if (!req.user) {
       return res.status(401).json({ error: "Unauthorized request" });
     }
-    const [rows] = await db.query("SELECT * FROM chart_reports");
+    const [rows] = await db.query("SELECT * FROM chart_reports2");
     return res.status(200).json({
       success: true,
       count: rows.length,
@@ -52,11 +52,11 @@ router.get("/reports/adoption", auth, async (req, res) => {
       return res.status(401).json({ error: "Unauthorized request" });
     }
 
-    const [rows] = await db.query("SELECT * FROM chart_reports2");
+    const [rows] = await db.query("SELECT * FROM genaiadoption");
 
     const formatted = rows.map(r => ({
       name: r.name,
-      value: r.videos
+      value: r.usage
     }));
 
     return res.status(200).json({ success: true, data: formatted });
@@ -76,11 +76,11 @@ router.get("/reports/efficiency", auth, async (req, res) => {
       return res.status(401).json({ error: "Unauthorized request" });
     }
 
-    const [rows] = await db.query("SELECT * FROM efficiency");
+    const [rows] = await db.query("SELECT * FROM modelefficiency");
 
     const formatted = rows.map(r => ({
       name: r.name,
-      value: r.videos
+      value: r.efficiency
     }));
 
     return res.status(200).json({ success: true, data: formatted });
@@ -100,11 +100,11 @@ router.get("/reports/cost", auth, async (req, res) => {
       return res.status(401).json({ error: "Unauthorized request" });
     }
 
-    const [rows] = await db.query("SELECT * FROM cost");
+    const [rows] = await db.query("SELECT * FROM modelcost");
 
     const formatted = rows.map(r => ({
       name: r.name,
-      value: r.videos
+      value: r.cost
     }));
 
     return res.status(200).json({ success: true, data: formatted });
