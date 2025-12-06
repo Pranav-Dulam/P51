@@ -3,125 +3,104 @@ const router = express.Router();
 const db = require("../db");
 const auth = require("../middleware/auth");
 
-// GET Summary Chart Data
+// =========================
+// SUMMARY CHART
+// =========================
 router.get("/summary", auth, async (req, res) => {
   try {
-    if (!req.user) {
-      return res.status(401).json({ error: "Unauthorized request" });
-    }
     const [rows] = await db.query("SELECT * FROM chart_reports2");
+
     const formatted = rows.map(r => ({
       name: r.model || r.name,
-      value: r.value || r.usage || r.efficiency || r.cost || 0
+      value: r.usage || r.efficiency || r.cost || r.value || 0
     }));
 
-    return res.status(200).json({
-      success: true,
-      data: formatted
-    });
+    return res.json({ success: true, data: formatted });
   } catch (err) {
-    console.error("Summary chart DB error:", err);
-    return res.status(500).json({
-      success: false,
-      error: "Database error loading summary chart",
-    });
+    console.error("SUMMARY ERROR:", err);
+    return res.status(500).json({ success: false, error: "Summary chart failed" });
   }
 });
 
-// GET Reports Chart Data
+// =========================
+// REPORTS (GLOBAL)
+// =========================
 router.get("/reports", auth, async (req, res) => {
   try {
-    if (!req.user) {
-      return res.status(401).json({ error: "Unauthorized request" });
-    }
     const [rows] = await db.query("SELECT * FROM chart_reports2");
+
     const formatted = rows.map(r => ({
       name: r.model || r.name,
-      value: r.value || r.usage || r.efficiency || r.cost || 0
+      value: r.usage || r.efficiency || r.cost || r.value || 0
     }));
 
-    return res.status(200).json({
-      success: true,
-      data: formatted
-    });
+    return res.json({ success: true, data: formatted });
   } catch (err) {
-    console.error("Reports chart DB error:", err);
-    return res.status(500).json({
-      success: false,
-      error: "Database error loading reports chart",
-    });
+    console.error("REPORTS ERROR:", err);
+    return res.status(500).json({ success: false, error: "Reports chart failed" });
   }
 });
 
-// GET GenAI Adoption Chart Data (chart_reports2)
+// =========================
+// ADOPTION CHART
+// Table: genaiadoption
+// Columns: id, name, usage
+// =========================
 router.get("/reports/adoption", auth, async (req, res) => {
   try {
-    if (!req.user) {
-      return res.status(401).json({ error: "Unauthorized request" });
-    }
-
-    const [rows] = await db.query("SELECT * FROM genaiadoption");
+    const [rows] = await db.query("SELECT name, usage FROM genaiadoption");
 
     const formatted = rows.map(r => ({
       name: r.name,
       value: r.usage
     }));
 
-    return res.status(200).json({ success: true, data: formatted });
+    return res.json({ success: true, data: formatted });
   } catch (err) {
-    console.error("Adoption chart DB error:", err);
-    return res.status(500).json({
-      success: false,
-      error: "Database error loading adoption chart",
-    });
+    console.error("ADOPTION ERROR:", err);
+    return res.status(500).json({ success: false, error: "Adoption chart failed" });
   }
 });
 
-// GET Model Efficiency Chart Data (efficiency)
+// =========================
+// EFFICIENCY CHART
+// Table: modelefficiency
+// Columns: id, model, efficiency
+// =========================
 router.get("/reports/efficiency", auth, async (req, res) => {
   try {
-    if (!req.user) {
-      return res.status(401).json({ error: "Unauthorized request" });
-    }
-
-    const [rows] = await db.query("SELECT * FROM modelefficiency");
+    const [rows] = await db.query("SELECT model, efficiency FROM modelefficiency");
 
     const formatted = rows.map(r => ({
       name: r.model,
       value: r.efficiency
     }));
 
-    return res.status(200).json({ success: true, data: formatted });
+    return res.json({ success: true, data: formatted });
   } catch (err) {
-    console.error("Efficiency chart DB error:", err);
-    return res.status(500).json({
-      success: false,
-      error: "Database error loading efficiency chart",
-    });
+    console.error("EFFICIENCY ERROR:", err);
+    return res.status(500).json({ success: false, error: "Efficiency chart failed" });
   }
 });
 
-// GET Cost Reduction Chart Data (cost)
+// =========================
+// COST CHART
+// Table: modelcost
+// Columns: id, model, cost
+// =========================
 router.get("/reports/cost", auth, async (req, res) => {
   try {
-    if (!req.user) {
-      return res.status(401).json({ error: "Unauthorized request" });
-    }
-
-    const [rows] = await db.query("SELECT * FROM modelcost");
+    const [rows] = await db.query("SELECT model, cost FROM modelcost");
 
     const formatted = rows.map(r => ({
       name: r.model,
       value: r.cost
     }));
 
-    return res.status(200).json({ success: true, data: formatted });
+    return res.json({ success: true, data: formatted });
   } catch (err) {
-    console.error("Cost chart DB error:", err);
-    return res.status(500).json({
-      success: false,
-      error: "Database error loading cost chart",
-    });
+    console.error("COST ERROR:", err);
+    return res.status(500).json({ success: false, error: "Cost chart failed" });
   }
 });
 
