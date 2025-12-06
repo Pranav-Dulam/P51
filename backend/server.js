@@ -27,17 +27,6 @@ app.use(cors({
     allowedHeaders: ["Content-Type", "Authorization"],
 }));
 
-// Fix preflight OPTIONS requests (correct wildcard)
-app.options("*", cors({
-    origin: [
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-        "http://159.65.180.152"
-    ],
-    methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-}));
-
 // Health check
 app.get("/api/health", (req, res) => {
     res.json({ status: "Backend running on port 3000" });
