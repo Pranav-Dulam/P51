@@ -5,6 +5,7 @@ const cors = require("cors");
 const authRoutes = require("./routes/auth");
 const chartRoutes = require("./routes/charts");
 const statsRoutes = require("./routes/stats");
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 
@@ -29,7 +30,7 @@ app.use(cors({
 
 // Health check
 app.get("/api/health", (req, res) => {
-    res.json({ status: "Backend running on port 3000" });
+    res.json({ status: `Backend running on port ${PORT}` });
 });
 
 // Auth routes
@@ -55,7 +56,6 @@ if (!process.env.JWT_SECRET) {
 }
 
 // Start server
-const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Backend running on port ${PORT}`);
 });
