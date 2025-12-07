@@ -48,11 +48,11 @@ router.get("/reports", auth, async (req, res) => {
 // =========================
 router.get("/reports/adoption", auth, async (req, res) => {
   try {
-    const [rows] = await db.query("SELECT industry, `usage` AS usage FROM genaiadoption");
+    const [rows] = await db.query("SELECT industry, `usage` AS usage_val FROM genaiadoption");
 
     const formatted = rows.map(r => ({
       name: r.industry,
-      value: r.usage
+      value: r.usage_val
     }));
 
     return res.json({ success: true, data: formatted });
