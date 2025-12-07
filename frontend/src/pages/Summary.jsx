@@ -19,7 +19,7 @@ export default function Summary() {
   useEffect(() => {
     if (!token) return; // Prevent API call if token is missing
 
-    axios.get("http://159.65.180.152:3000/api/charts/summary", {
+    axios.get("http://137.184.40.86:3000/api/charts/summary", {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json"

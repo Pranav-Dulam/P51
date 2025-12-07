@@ -22,7 +22,7 @@ export default function LoginPage() {
         setError("");
 
         try {
-            const res = await axios.post("http://159.65.180.152:3000/api/auth/login", {
+            const res = await axios.post("http://137.184.40.86:3000/api/auth/login", {
                 username: form.username,
                 password: form.password
             }, {
