@@ -53,7 +53,7 @@ These innovations have empowered developers to build more immersive, accurate, a
                 Read original source →
               </a>
 
-              <img className="post-image" src="/McKinsey_Quarterly_logo.png" alt="AI visual" />
+              <img className="post-image" src="/McKinsey_Quarterly_logo.png" alt="AI visual" loading="lazy" />
             </div>
           )}
 
