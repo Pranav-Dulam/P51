@@ -22,14 +22,14 @@ app.use(cors({
     origin: [
         "http://localhost:5173",
         "http://127.0.0.1:5173",
-        "http://159.65.180.152" // production frontend (NGINX on port 80)
+        "http://137.184.40.86" // updated production frontend (NGINX on port 80)
     ],
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type", "Authorization"],
 }));
 
 // Health check
-app.get("/api/health", (req, res) => {
+aßpp.get("/api/health", (req, res) => {
     res.json({ status: `Backend running on port ${PORT}` });
 });
 
