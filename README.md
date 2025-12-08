@@ -4,6 +4,13 @@ P51 is a full-stack analytics platform that visualizes real-world GenAI trends t
 
 ---
 
+## 🔗 Live Demo
+
+Access the deployed P51 Dashboard here: **[http://137.184.40.86](http://137.184.40.86)**
+
+
+---
+
 ## 🎨 Frontend
 
 * **React + Vite** — Fast dev environment with optimized builds
