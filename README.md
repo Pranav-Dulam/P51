@@ -1,86 +1,97 @@
-# 🚀 P51 – Generative AI Innovation Dashboard  
-A full-stack web application showcasing AI adoption trends, model efficiency, model cost analysis, and innovation insights — built with **React (Vite)**, **Node.js + Express**, **MySQL**, and **Nginx** on a **DigitalOcean Linux server**.
+# 🚀 P51 – Generative AI Innovation Dashboard
 
-Live Deployment:  
-👉 http://137.184.40.86
+P51 is a full-stack analytics platform that visualizes real-world GenAI trends through interactive charts, secure authentication, and a production-ready deployment stack. It integrates a React-based responsive dashboard with a Node.js API layer and a MySQL database optimized for analytical reporting.
 
 ---
 
-## 📊 Project Overview
-P51 is a data-driven dashboard designed to visualize **Generative AI industry insights**, including:
+## 🎨 Frontend
 
-- AI adoption by industry  
-- Model efficiency comparisons  
-- Model cost breakdowns  
-- Monthly AI usage trends  
-- News + innovation panel  
-- Secure authentication system  
-
-This app serves as a production-ready demo of a **real-world analytics platform** powered by a complete Node.js backend and interactive React frontend.
+* **React + Vite** — Fast dev environment with optimized builds
+* **Axios** — Seamless API communication
+* **CSS Modules / Custom UI** — Clean, modular styling
+* **Nginx Deployment** — Production hosting for `/dist`
+* **Responsive Dashboard Layout** — Works across desktop and mobile
 
 ---
 
-## 🏗️ Tech Stack
+## 🛠 Backend
 
-### **Frontend**
-- React + Vite
-- Axios for API requests  
-- CSS Modules / Custom UI  
-- Deployed through Nginx  
-- Responsive dashboard layout  
-
-### **Backend**
-- Node.js + Express  
-- JSON Web Token (JWT) authentication  
-- MySQL2 (Connection Pool)  
-- Secure .env configuration  
-- PM2 process manager  
-- CORS configured for production  
-
-### **Database (MySQL)**
-- genaiadoption → Industry usage  
-- modelefficiency → Efficiency metrics  
-- modelcost → Cost comparison  
-- chart_reports2 → Monthly data  
-
-### **Deployment**
-- DigitalOcean droplet (Ubuntu)  
-- Reverse proxy using Nginx  
-- Secure routing for `/api` backend  
-- Static file hosting for React `/dist`  
-- Systemd, PM2, ufw firewall  
+* **Node.js + Express API**
+* **JWT Authentication** (secure login & protected routes)
+* **MySQL2 Connection Pool** for efficient queries
+* **Environment-secure `.env` configuration**
+* **PM2** for production process management
+* **CORS** configured for production usage
 
 ---
 
-## 🔐 Authentication
-P51 uses secure JWT authentication:
+## 🗄 Database (MySQL)
 
-- `/api/auth/signup` → Create user  
-- `/api/auth/login` → Get JWT token  
-- Routes under `/api/charts/*` require `Authorization: Bearer <token>`  
+| Table Name        | Purpose                               |
+| ----------------- | ------------------------------------- |
+| `genaiadoption`   | Industry-wise GenAI usage data        |
+| `modelefficiency` | Efficiency metrics for AI models      |
+| `modelcost`       | Cost comparison across model families |
+| `chart_reports2`  | Monthly reports for dashboard summary |
 
-Password is hashed and stored securely.
+---
+
+## 🚀 Deployment Architecture
+
+* **DigitalOcean Ubuntu Droplet**
+* **Nginx Reverse Proxy** for routing `/api → Node.js backend`
+* **Static File Hosting** for React build
+* **Secure firewall (ufw)** and systemd services
+* **PM2** ensures uptime & log management
+
+---
+
+## 🔐 Authentication Workflow
+
+P51 uses **JWT-based secure authentication** to protect all analytics endpoints.
+
+* `POST /api/auth/signup` → Register user
+* `POST /api/auth/login` → Receive JWT token
+
+All chart routes require:
+
+```
+Authorization: Bearer <token>
+```
+
+Passwords are hashed before storage, ensuring safe credential management.
 
 ---
 
 ## 📡 API Endpoints
 
-### **Auth**
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/auth/signup` | Create new user |
-| POST | `/api/auth/login` | Login + get JWT |
+### **Auth Routes**
 
-### **Charts**
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/charts/summary` | Monthly report chart |
-| GET | `/api/charts/reports/adoption` | AI adoption by industry |
-| GET | `/api/charts/reports/efficiency` | Model efficiency metrics |
-| GET | `/api/charts/reports/cost` | Model cost comparison |
+| Method | Endpoint           | Description     |
+| ------ | ------------------ | --------------- |
+| POST   | `/api/auth/signup` | Create new user |
+| POST   | `/api/auth/login`  | Login + get JWT |
 
-All require Authorization header.
+### **Chart Routes** (Protected)
+
+| Method | Endpoint                         | Description                 |
+| ------ | -------------------------------- | --------------------------- |
+| GET    | `/api/charts/summary`            | Monthly summary chart       |
+| GET    | `/api/charts/reports/adoption`   | GenAI adoption by industry  |
+| GET    | `/api/charts/reports/efficiency` | Model efficiency comparison |
+| GET    | `/api/charts/reports/cost`       | Model cost analysis         |
+
+> ⚠️ All chart requests must include a valid JWT token.
 
 ---
 
-## 📂 Project Structure
+## 📂 Project Structure (High-Level)
+
+A streamlined monorepo containing:
+
+* **Frontend**: React, components, pages, API handlers
+* **Backend**: Express routes, controllers, JWT middleware
+* **Database**: MySQL tables powering analytic visualizations
+* **Deployment**: Nginx configuration, PM2 ecosystem files
+
+---
